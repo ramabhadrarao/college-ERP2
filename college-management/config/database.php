@@ -111,6 +111,14 @@ function fetchAll($sql, $types = "", $params = []) {
  * @param array $params Array of parameters to bind
  * @return array|false Returns a single result row or false on failure
  */
+/**
+ * Fetch a single row from a query result
+ * 
+ * @param string $sql SQL query with placeholders
+ * @param string $types Parameter types (i: integer, d: double, s: string, b: blob)
+ * @param array $params Array of parameters to bind
+ * @return array|false Returns a single result row or false on failure
+ */
 function fetchOne($sql, $types = "", $params = []) {
     $stmt = executeQuery($sql, $types, $params);
     
@@ -119,6 +127,13 @@ function fetchOne($sql, $types = "", $params = []) {
     }
     
     $result = $stmt->get_result();
+    
+    // Add this check to prevent the fatal error
+    if ($result === false) {
+        $stmt->close();
+        return false;
+    }
+    
     $row = $result->fetch_assoc();
     
     $stmt->close();
