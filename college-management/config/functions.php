@@ -130,7 +130,7 @@ function validatePassword($password) {
  * @return string The hashed password
  */
 function hashPassword($password) {
-    return password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
+    return password_hash($password, PASSWORD_DEFAULT);
 }
 
 /**

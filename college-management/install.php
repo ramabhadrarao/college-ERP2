@@ -14,8 +14,8 @@ ini_set('display_errors', 1);
 ini_set('max_execution_time', 300); // 5 minutes
 
 // Load configuration and functions
-require_once './config/database.php';
-require_once './config/functions.php';
+require_once '../config/database.php';
+require_once '../config/functions.php';
 
 // Start session for flash messages
 if (session_status() === PHP_SESSION_NONE) {
